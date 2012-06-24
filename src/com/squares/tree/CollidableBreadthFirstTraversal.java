@@ -9,5 +9,4 @@ public class CollidableBreadthFirstTraversal extends BreadthFirstTraversal {
 	protected boolean isMatch(SceneNode child, SceneNode startNode) {
 		return (child instanceof CollidableSceneNode) && startNode != child;
 	}
-	
 }

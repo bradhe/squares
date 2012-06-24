@@ -22,9 +22,7 @@ public class SquareModel extends Model {
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			translate(0, 0.1f, 0);
 		}
-		
-		// Translate downwards.
-		
+	
 		//double offset = 0.15 * (Math.sin((2.0 * 3.14159) * (accum / 1000.0)));
 		translate(0, -0.01f, 0);
 		

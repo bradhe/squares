@@ -36,7 +36,7 @@ public class FloorModel extends Model {
 		float halfWidth = squareMesh.getWidth() / 2.0f;
 		float halfHeight = squareMesh.getHeight() / 2.0f;
 		
-		return new Rect(absoluteVector.x - halfWidth, absoluteVector.y - halfHeight, squareMesh.getWidth(), squareMesh.getHeight());
+		return new Rect(absoluteVector.x - halfWidth, absoluteVector.y + halfHeight, squareMesh.getWidth(), squareMesh.getHeight());
 	}
 
 	@Override

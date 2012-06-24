@@ -14,17 +14,28 @@ public class Rect {
 	}
 	
 	public boolean overlaps(Rect rect) {
-		System.out.format("This:\t%s\n", this);
-		System.out.format("Rect:\t%s\n", rect);
-		System.out.println();
-		
-		if(this.left() > rect.right() || this.right() < rect.left() || this.top() < rect.bottom() || this.bottom() > rect.top()) {
+		if(this.left() > rect.right()) {
+			System.out.println("1");
 			return false;
 		}
-		else if(this.bottom() < rect.top()) {
-			return true;
+		else if(this.right() < rect.left()) {
+			System.out.println("2");
+			return false;
+		}
+		else if(this.top() < rect.bottom()) {
+			System.out.println("3");
+			return false;
+		}
+		else if(this.bottom() > rect.top()) {
+
+			System.out.format("This:\t%f\n", this.bottom());
+			System.out.format("Rect:\t%f\n", rect.top());
+			System.out.println();
+
+			return false;
 		}
 		else {
+			
 			return true;
 		}
 	}
