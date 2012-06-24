@@ -15,23 +15,15 @@ public class Rect {
 	
 	public boolean overlaps(Rect rect) {
 		if(this.left() > rect.right()) {
-			System.out.println("1");
 			return false;
 		}
 		else if(this.right() < rect.left()) {
-			System.out.println("2");
 			return false;
 		}
 		else if(this.top() < rect.bottom()) {
-			System.out.println("3");
 			return false;
 		}
 		else if(this.bottom() > rect.top()) {
-
-			System.out.format("This:\t%f\n", this.bottom());
-			System.out.format("Rect:\t%f\n", rect.top());
-			System.out.println();
-
 			return false;
 		}
 		else {

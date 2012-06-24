@@ -1,5 +1,6 @@
 package com.squares;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,23 +8,34 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Rectangle;
 import org.lwjgl.util.vector.Vector3f;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 import com.squares.math.Rect;
 import com.squares.physics.Force;
 import com.squares.physics.ForceList;
 import com.squares.physics.GravityForce;
+import com.squares.physics.JumpForce;
 
 public class SquareModel extends Model {
 	private long accum = 0l;
 	private double lastOffset = 0.0;
 	private ForceList forces;
+	private Texture texture;
 	
 	public SquareModel() {
 		super();
-		this.addChild(new SquareMesh(0.3f, 0.3f));
+		this.addChild(new SquareMesh(0.2f, 0.4f));
 		this.forces = new ForceList();
 		this.forces.add(new GravityForce(this, 0));
 		
+		try {
+			texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("assets/textures/Texture1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void update(long ticks) {
@@ -31,15 +43,25 @@ public class SquareModel extends Model {
 		this.accum += ticks;
 		super.update(ticks);
 		
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			boolean found = false;
+			for(Force force : forces) {
+				if(force instanceof JumpForce) {
+					found = true;
+				}
+			}
+			
+			if(!found) {
+				forces.add(new JumpForce(this, this.accum));
+			}
+		}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			translate(0, 0.05f, 0);
+		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
+			translate(-0.01f, 0, 0);
 		}
-		else if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			translate(-0.05f, 0, 0);
-		}
-		else if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
-			translate(0.05f, 0, 0);
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
+			translate(0.01f, 0, 0);
 		}
 		
 		if(this.findCollisions()) {
@@ -81,9 +103,11 @@ public class SquareModel extends Model {
 		GL11.glPushMatrix();
 		applyTransform();
 		
+		texture.bind();
 		for(RenderableSceneNode renderableSceneNode : getRenderableChildren()) {
 			renderableSceneNode.render();
 		}
+		//texture.release();
 
 		GL11.glPopMatrix();
 	}
@@ -108,4 +132,5 @@ public class SquareModel extends Model {
 		float offset = left.bottom() - right.top();
 		translate(0, -1 * offset, 0);
 	}
+
 }

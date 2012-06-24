@@ -2,6 +2,7 @@ package com.squares;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.Display;
@@ -34,16 +35,22 @@ public class Game {
 		
 		floor.translate(0.0f, -1.0f, 0.0f);
 		
+		FloorModel floor2 = new FloorModel();
+		this.scene.addChild(floor2);
+		
+		floor2.translate(-2.5f, -0.3f, 0);
+		
 		// Set the position of the whole scene!
 		this.scene.translate(0, 0, 0.0f);
 	}
 	
 	protected void update(long ticks) {
 		GL11.glClearColor(0.1f, 0.1f, 0.2f, 1.0f);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		
 		GL11.glLoadIdentity();
-		
+
 		// Just update each model I guess.
 		this.scene.update(ticks);
 	}

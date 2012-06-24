@@ -35,16 +35,23 @@ public class SquareMesh extends Mesh {
 		
 		GL11.glBegin(GL11.GL_QUADS);
 		
-		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
+		GL11.glTexCoord2f(0, 0);
+//		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
 		GL11.glVertex3f(-1 * halfWidth, -1 * halfHeight, 0);
 		
-		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
+
+		GL11.glTexCoord2f(1, 0);
+//		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
 		GL11.glVertex3f(halfWidth, -1 * halfHeight, 0);
 		
-		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
+
+		GL11.glTexCoord2f(1, 1);
+//		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
 		GL11.glVertex3f(halfWidth, halfHeight, 0);
 		
-		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
+
+		GL11.glTexCoord2f(0, 1);
+//		GL11.glColor4f(this.color.getRed() / 255.0f, this.color.getGreen() / 255.0f, this.color.getBlue() / 255.0f, this.color.getAlpha() / 255.0f);
 		GL11.glVertex3f(-1 * halfWidth, halfHeight, 0);
 		
 		GL11.glEnd();
