@@ -35,7 +35,7 @@ public class Game {
 		floor.translate(0.0f, -1.0f, 0.0f);
 		
 		// Set the position of the whole scene!
-		this.scene.translate(0, 0, -1.0f);
+		this.scene.translate(0, 0, 0.0f);
 	}
 	
 	protected void update(long ticks) {

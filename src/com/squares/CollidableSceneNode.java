@@ -13,8 +13,8 @@ public abstract class CollidableSceneNode extends RenderableSceneNode {
 		// See if there is a collision with anything in the scene.
 		this.findCollisions();
 	}
-	
-	protected void findCollisions() {
+
+	protected boolean findCollisions() {
 		// Gather all of the friendly nodes.
 		CollidableBreadthFirstTraversal traversal = new CollidableBreadthFirstTraversal();
 
@@ -23,13 +23,18 @@ public abstract class CollidableSceneNode extends RenderableSceneNode {
 		// Don't care about ourselves...
 		nodes.remove(this);
 		
+		boolean hasCollisions = false;
+		
 		for(SceneNode node : nodes) {
 			CollidableSceneNode collidableNode = (CollidableSceneNode)node;
 			
 			if(isCollision(collidableNode.getRect(), this.getRect())) {
 				onCollision(collidableNode);
+				hasCollisions = true;
 			}
 		}
+		
+		return hasCollisions;
 	}
 	
 	protected boolean isCollision(Rect left, Rect right) {

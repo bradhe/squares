@@ -45,6 +45,10 @@ public abstract class SceneNode {
 		this.children = children;
 	}
 
+	public void translate(Vector3f vector) {	
+		translate(vector.x, vector.y, vector.z);
+	}
+
 	public void translate(float x, float y, float z) {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glPushMatrix();
